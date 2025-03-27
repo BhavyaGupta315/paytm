@@ -33,5 +33,5 @@ const accountSchema = new mongoose.Schema({
     }
 });
 
-export const user = mongoose.models.Content || mongoose.model('User', userSchema);
-export const content =  mongoose.models.Content || mongoose.model('Account', accountSchema);
+export const User = mongoose.models.Content || mongoose.model('User', userSchema);
+export const Content =  mongoose.models.Content || mongoose.model('Account', accountSchema);
