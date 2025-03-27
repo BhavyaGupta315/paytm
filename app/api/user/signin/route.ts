@@ -10,7 +10,7 @@ interface User {
     password : string;
 }
 
-export default async function POST(req : NextRequest){
+export async function POST(req : NextRequest){
     const body : User = await req.json();
     dbConnect();
     const userAlready = await User.findOne({
