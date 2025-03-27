@@ -1,4 +1,4 @@
-import SigninForm from "@/components/SignupForm"; // Importing the client component
+import SigninForm from "@/components/SigninForm"; // Importing the client component
 
 export default function SignupPage() {
     return (

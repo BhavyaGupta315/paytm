@@ -10,8 +10,6 @@ import { BottomWarning } from "./ui/BottomWarning";
 
 export default function SignupForm(){
     const [formData, setFormData] = useState({
-        firstName : "",
-        lastName : "",
         username : "",
         password : ""
     });
@@ -25,7 +23,7 @@ export default function SignupForm(){
         });
     }
 
-    const handleSignup = async () => {
+    const handleSignin = async () => {
         try {
             // const response = await axios.post("/api/v1/user/signup", formData);
             // if(response.status === 200){
@@ -35,20 +33,18 @@ export default function SignupForm(){
             //     console.log(response.data.message);
             // }
         }catch(err){
-            console.error("Signup Failed - ", err);
+            console.error("Signin Failed - ", err);
         }
     }
     return <>
-        <Heading label = "Sign Up"/>
-        <SubHeading label = "Enter your Information to create an account" />
+        <Heading label = "Sign In"/>
+        <SubHeading label = "Enter your Credentials" />
 
-        <InputBox label="First Name" placeholder="Enter your First Name" onChange={handleChange} />
-        <InputBox label="Last Name" placeholder="Enter your Last Name" onChange={handleChange} />
         <InputBox label="Username" placeholder="Enter your Username" onChange={handleChange} />
         <InputBox label="Password" placeholder="Enter your Password" onChange={handleChange}  type="password"/>
 
         <div className="pt-4">
-            <Button onClick={handleSignup} label="Sign in" />
+            <Button onClick={handleSignin} label="Sign in" />
         </div>
 
         <BottomWarning label="Don't have an account?" buttonText="Signup" to="/signup" />
