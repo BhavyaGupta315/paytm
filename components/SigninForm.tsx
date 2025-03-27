@@ -25,13 +25,13 @@ export default function SignupForm(){
 
     const handleSignin = async () => {
         try {
-            // const response = await axios.post("/api/v1/user/signup", formData);
-            // if(response.status === 200){
-                // localStorage.setItem("token", response.data.token);
+            const response = await axios.post("/api/v1/user/signinw", formData);
+            if(response.status === 200){
+                localStorage.setItem("token", response.data.token);
                 router.push("/dashboard");
-            // }else{
-            //     console.log(response.data.message);
-            // }
+            }else{
+                console.log(response.data.message);
+            }
         }catch(err){
             console.error("Signin Failed - ", err);
         }
