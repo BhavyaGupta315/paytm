@@ -25,7 +25,7 @@ export default function SignupForm(){
 
     const handleSignin = async () => {
         try {
-            const response = await axios.post("/api/v1/user/signinw", formData);
+            const response = await axios.post("/api/v1/user/signin", formData);
             if(response.status === 200){
                 localStorage.setItem("token", response.data.token);
                 router.push("/dashboard");
