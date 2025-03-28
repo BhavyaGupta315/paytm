@@ -1,6 +1,6 @@
-import SigninForm from "@/components/SigninForm"; // Importing the client component
+import SigninForm from "@/components/SigninForm"; 
 
-export default function SignupPage() {
+export default function SigninPage() {
     return (
         <div className="bg-slate-300 h-screen flex justify-center">
             <div className="flex flex-col justify-center">

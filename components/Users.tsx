@@ -11,7 +11,6 @@ export default function Users(){
     const [filter, setFilter] = useState<string>("");
     const [loading, setLoading] = useState(true);
     useEffect(()=>{
-        console.log("Getting User with filter - ", filter);
         getUsers(filter).then((usersData) => {
             setUsers(usersData);
             setLoading(false);

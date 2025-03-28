@@ -1,8 +1,9 @@
 "use client";
 
-import validateToken from "@/lib/validatetoken";
+import validateToken, {validateTokenProps} from "@/lib/validatetoken";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+
 
 export default function AuthProvider({ children } : {children : React.ReactNode}){
     const [loading, setLoading] = useState(true);
@@ -13,8 +14,8 @@ export default function AuthProvider({ children } : {children : React.ReactNode}
         if(!token){
             router.push('/signin');
         }else{
-            validateToken(token).then((res)=>{
-                if(res){
+            validateToken(token).then((res : validateTokenProps)=>{
+                if(res.check){
                     setLoading(false);
                 }else{
                     router.push('/signin');
