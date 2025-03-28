@@ -62,7 +62,7 @@ export async function getBalance(){
 
 export async function getUsers({filter} : {filter : string}){
     try {
-        const response = await fetch(`/api/users/bulk?filter=${filter}`, {
+        const response = await fetch(`/api/user/bulk?filter=${filter}`, {
             method: "GET",
         });
 
