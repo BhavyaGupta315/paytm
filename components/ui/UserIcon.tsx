@@ -2,14 +2,21 @@
 import { getInitials } from "@/utils/data";
 import { useEffect, useState } from "react";
 
-export default function UserIcon() {
-    const [initialNames, setInitialNames] = useState("..."); 
+interface UserIconProps{
+    givenInitialNames? : string
+}
+
+export default function UserIcon({ givenInitialNames } : UserIconProps) {
+    const [initialNames, setInitialNames] = useState<string>(givenInitialNames || "...");
 
     useEffect(() => {
-        getInitials().then((initial) => {
-            setInitialNames(initial);
-        });
-    }, []); 
+        if (!givenInitialNames) {
+            getInitials().then((initial) => {
+                setInitialNames(initial);
+            });
+        }
+    }, [givenInitialNames]);
+    
 
     return (
         <div className="rounded-full h-12 w-12 bg-slate-200 flex justify-center mt-1 mr-2">

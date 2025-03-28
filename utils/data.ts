@@ -60,10 +60,20 @@ export async function getBalance(){
     }
 }
 
-export async function getUsers({filter} : {filter : string}){
+export async function getUsers(filter : string){
     try {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            console.error("No token found");
+            return null;
+        }
         const response = await fetch(`/api/user/bulk?filter=${filter}`, {
             method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
         });
 
         if (!response.ok) {

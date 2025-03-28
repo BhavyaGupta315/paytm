@@ -9,7 +9,7 @@ export async function GET(req : NextRequest){
     const authHeader = req.headers.get("Authorization");
 
     if (!authHeader || !authHeader.startsWith("Bearer ")){
-        return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        return NextResponse.json({ message: "Unauthorized" }, { status: 405 });
     }
 
     const token = authHeader.split(" ")[1];
@@ -32,7 +32,7 @@ export async function GET(req : NextRequest){
             ];
         }
         
-        const users = await User.find(query).select("username firstName lastName _id");
+        const users = await User.find(query).select("firstName lastName _id");
 
         return NextResponse.json({users});
     }catch(error){
