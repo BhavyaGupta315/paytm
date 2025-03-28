@@ -1,4 +1,4 @@
-import { User } from "@/models/Schemas";
+import { Account, User } from "@/models/Schemas";
 import dbConnect from "@/utils/dbconnect";
 import { NextRequest } from "next/server";
 import * as jwt from "jsonwebtoken";
@@ -41,16 +41,15 @@ export async function POST(req : NextRequest){
         });
     }
 
+    const userId = newUser._id;
+
+    await Account.create({
+        userId, 
+        balance : (1 + Math.floor(Math.random()*1000))
+    })
+    
     const token = jwt.sign({userId : newUser._id}, JWT_SECRET);
-    const decode = jwt.verify(token, JWT_SECRET);
-    if(!decode){
-        return new Response(JSON.stringify({message : "Invalid Token"}), {
-            status : 401,
-            headers : {
-                "Content-Type" : "application/json"
-            }
-        });
-    }
+    
     return new Response(JSON.stringify({
         message : "User Signed Up Successfully",
         token : token

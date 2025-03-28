@@ -39,7 +39,7 @@ export async function getBalance(){
     }
 
     try {
-        const response = await fetch("/api/balance", {
+        const response = await fetch("/api/account/balance", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
