@@ -14,7 +14,7 @@ interface User {
 
 export async function POST(req : NextRequest){
     const body : User = await req.json();
-    dbConnect();
+    await dbConnect();
     const userAlready = await User.findOne({
         username : body.username,
     })

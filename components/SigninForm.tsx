@@ -25,7 +25,7 @@ export default function SignupForm(){
 
     const handleSignin = async () => {
         try {
-            const response = await axios.post("/api/v1/user/signin", formData);
+            const response = await axios.post("/api/user/signin", formData);
             if(response.status === 200){
                 localStorage.setItem("token", response.data.token);
                 router.push("/dashboard");
@@ -40,8 +40,8 @@ export default function SignupForm(){
         <Heading label = "Sign In"/>
         <SubHeading label = "Enter your Credentials" />
 
-        <InputBox label="Username" placeholder="Enter your Username" onChange={handleChange} />
-        <InputBox label="Password" placeholder="Enter your Password" onChange={handleChange}  type="password"/>
+        <InputBox label="Username" placeholder="Enter your Username" onChange={handleChange} name="username" />
+        <InputBox label="Password" placeholder="Enter your Password" onChange={handleChange}  type="password" name="password" />
 
         <div className="pt-4">
             <Button onClick={handleSignin} label="Sign in" />

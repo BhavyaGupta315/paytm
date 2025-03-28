@@ -1,5 +1,10 @@
+import Appbar from "@/components/Appbar";
+import AuthProvider from "@/components/AuthProvider";
+
 export default function Dashboard(){
     return <div>
-        Dashboard
+        <AuthProvider>
+        <Appbar/>
+        </AuthProvider>
     </div>
 }

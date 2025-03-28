@@ -23,11 +23,12 @@ export default function SignupForm(){
             ...formData,
             [e.target.name] : e.target.value
         });
+        console.log(formData);
     }
 
     const handleSignup = async () => {
         try {
-            const response = await axios.post("/api/v1/user/signup", formData);
+            const response = await axios.post("/api/user/signup", formData);
             if(response.status === 200){
                 localStorage.setItem("token", response.data.token);
                 router.push("/dashboard");
@@ -42,10 +43,10 @@ export default function SignupForm(){
         <Heading label = "Sign Up"/>
         <SubHeading label = "Enter your Information to create an account" />
 
-        <InputBox label="First Name" placeholder="Enter your First Name" onChange={handleChange} />
-        <InputBox label="Last Name" placeholder="Enter your Last Name" onChange={handleChange} />
-        <InputBox label="Username" placeholder="Enter your Username" onChange={handleChange} />
-        <InputBox label="Password" placeholder="Enter your Password" onChange={handleChange}  type="password"/>
+        <InputBox label="First Name" placeholder="Enter your First Name" onChange={handleChange} name="firstName"/>
+        <InputBox label="Last Name" placeholder="Enter your Last Name" onChange={handleChange} name="lastName"/>
+        <InputBox label="Username" placeholder="Enter your Username" onChange={handleChange} name="username"/>
+        <InputBox label="Password" placeholder="Enter your Password" onChange={handleChange}  type="password" name="password"/>
 
         <div className="pt-4">
             <Button onClick={handleSignup} label="Sign Up" />

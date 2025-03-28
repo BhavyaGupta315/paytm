@@ -1,12 +1,7 @@
-// I need to get the User name initial and lastname Initial
-// Then I need to fetch balance
-// Then i need to fetch all the other users. Based on the token
-
 export async function getInitials(){
     const token = localStorage.getItem('token');
-
     if(!token){
-        console.error("No Token Found");
+        console.log("No Token Found");
         return null;
     }
 
@@ -18,17 +13,19 @@ export async function getInitials(){
                 "Content-Type" : "application/json"
             }
         });
+        
         if(!response.ok){
             console.error("Failed to fetch user Data");
             return null;
         }
         const json = await response.json();
-        const firstNameInitial = json.firstName[0];
-        const lastNameInitial = json.lastName[0];
+        
+        const firstNameInitial = json.user.firstName[0];
+        const lastNameInitial = json.user.lastName[0];
         return firstNameInitial + lastNameInitial;
         
     }catch(err){
-        console.error("Failed to fetch user Data");
+        console.error("Failed to fetch user Data ", err);
         return null;
     }
 }
@@ -63,7 +60,7 @@ export async function getBalance(){
     }
 }
 
-export async function getUsers({filter} : {filter : string})
+export async function getUsers({filter} : {filter : string}){
     try {
         const response = await fetch(`/api/users/bulk?filter=${filter}`, {
             method: "GET",
