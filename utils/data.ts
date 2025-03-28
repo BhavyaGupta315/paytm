@@ -15,7 +15,7 @@ export async function getInitials(){
         });
         
         if(!response.ok){
-            console.error("Failed to fetch user Data");
+            console.log("Failed to fetch user Data");
             return null;
         }
         const json = await response.json();
@@ -25,7 +25,7 @@ export async function getInitials(){
         return firstNameInitial + lastNameInitial;
         
     }catch(err){
-        console.error("Failed to fetch user Data ", err);
+        console.log("Failed to fetch user Data ", err);
         return null;
     }
 }
@@ -34,7 +34,7 @@ export async function getBalance(){
     const token = localStorage.getItem("token");
 
     if (!token) {
-        console.error("No token found");
+        console.log("No token found");
         return null;
     }
 
@@ -48,14 +48,14 @@ export async function getBalance(){
         });
 
         if (!response.ok) {
-            console.error("Failed to fetch balance");
+            console.log("Failed to fetch balance");
             return null;
         }
 
         const json = await response.json();
         return json.balance; 
     } catch (error) {
-        console.error("Error fetching balance:", error);
+        console.log("Error fetching balance:", error);
         return null;
     }
 }
@@ -65,7 +65,7 @@ export async function getUsers(filter : string){
         const token = localStorage.getItem("token");
 
         if (!token) {
-            console.error("No token found");
+            console.log("No token found");
             return null;
         }
         const response = await fetch(`/api/user/bulk?filter=${filter}`, {
@@ -77,14 +77,14 @@ export async function getUsers(filter : string){
         });
 
         if (!response.ok) {
-            console.error("Failed to fetch users");
+            console.log("Failed to fetch users");
             return null;
         }
 
         const json = await response.json();
         return json.users; 
     } catch (error) {
-        console.error("Error fetching users:", error);
+        console.log("Error fetching users:", error);
         return null;
     }
 }
