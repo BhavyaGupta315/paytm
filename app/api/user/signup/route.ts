@@ -45,7 +45,7 @@ export async function POST(req : NextRequest){
 
     await Account.create({
         userId, 
-        balance : (1 + Math.floor(Math.random()*1000))
+        balance : (1 + Math.floor(Math.random()*10000))
     })
     
     const token = jwt.sign({userId : newUser._id}, JWT_SECRET);
