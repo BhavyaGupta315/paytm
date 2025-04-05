@@ -21,6 +21,8 @@ export async function POST(req : NextRequest){
         if(!res.check){
             return NextResponse.json({
                 message : "Invalid Token"
+            },{
+                status : 401
             })
         }
     })

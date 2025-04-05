@@ -1,7 +1,7 @@
 "use client"; 
 import { useEffect, useState } from "react";
 import validateToken, { validateTokenProps } from "@/lib/validatetoken";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import UserIcon from "@/components/ui/UserIcon";
@@ -36,23 +36,45 @@ export default function SendPageClient({ id, name }: { id: string; name: string 
     if (isAuth === null) return <h1>Loading...</h1>;
     if (!isAuth) return <h1>Wrong URL - You cannot access this page</h1>;
 
-    const handleOnClick = async ()=>{
-        await axios.post("http://localhost:3000/api/account/transfer",{
-            amount : amount,
-            to : id,
-            userId : userId
-        },{
-            headers : {
-                Authorization : "Bearer " + localStorage.getItem("token") 
+    const handleOnClick = async () => {
+        try {
+            const response = await axios.post("http://localhost:3000/api/account/transfer", {
+                amount,
+                to: id,
+                userId
+            }, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                }
+            });
+    
+            if (response.status === 200) {
+                console.log("Transfer successful!");
+                router.push("/dashboard");
             }
-        })
-        router.push("/dashboard");                       
-    }
+            
+        } catch (error) {
+            const err = error as AxiosError<{ message?: string }>;
+            if (err.response) {
+                if (err.response.status === 403) {
+                    console.error("Insufficient balance. Please check your funds.");
+                    alert("Error: Insufficient balance!");
+                } else {
+                    console.error("Transfer failed:", err.response.data);
+                    alert(`Error: ${err.response.data.message || "Something went wrong!"}`);
+                }
+            } else {
+                console.error("Network or server error:", err.message);
+                alert("Network error. Please try again later.");
+            }
+        }
+    };
+    
 
     return (
-        <div className="flex justify-center h-screen bg-gray-100">
+        <div className="flex justify-center h-screen">
                 <div className="h-full flex flex-col justify-center">
-                    <div className="border h-min p-4 w-96 bg-white shadow-md hover:shadow-2xl transition duration-300 rounded-lg hover:bg-zinc-50">
+                    <div className="border h-min p-4 w-96 bg-white/10 shadow-md hover:shadow-2xl transition duration-300 rounded-lg hover:bg-white/20">
                         <div className="flex flex-col p-6">
                             <h2 className="text-3xl font-bold text-center cursor-default">Send Money</h2>
                         </div>

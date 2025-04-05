@@ -19,7 +19,7 @@ export default function UserIcon({ givenInitialNames } : UserIconProps) {
     
 
     return (
-        <div className="rounded-full h-12 w-12 bg-slate-200 flex justify-center mt-1 mr-2">
+        <div className="rounded-full h-12 w-12 bg-gray-500 shadow-lg flex justify-center mt-1 mr-2">
             <div className="flex flex-col justify-center h-full text-center">
                 {initialNames}
             </div>

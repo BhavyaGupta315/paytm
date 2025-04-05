@@ -13,13 +13,10 @@ interface User {
 export async function POST(req : NextRequest){
     const body : User = await req.json();
     await dbConnect();
-    console.log(body);
     const userAlready = await User.findOne({
         username : body.username,
         password : body.password
     })
-    console.log(userAlready);
-    console.log("Here comes the first API Request")
     if(!userAlready){
         return new Response(JSON.stringify({message : "User Not Found"}), {
             status : 404,

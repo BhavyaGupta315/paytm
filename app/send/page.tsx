@@ -3,7 +3,7 @@ import dbConnect from "@/utils/dbconnect";
 import { User } from "@/models/Schemas";
 
 export default async function SendPage({ searchParams }: { searchParams: { id?: string; name?: string } }) {
-    const { id, name } = searchParams;
+    const { id, name } = await searchParams;
 
     if (!id || !name) {
         return <h1>Wrong URL</h1>;

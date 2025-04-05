@@ -38,7 +38,7 @@ interface UserProps {
 
 function User({ user } : {user : UserProps}){
     const router = useRouter();
-    return <div className="rounded-md shadow-md my-2 p-1 hover:shadow-lg hover:scale-101 transition duration-300 cursor-pointer">
+    return <div className="rounded-lg shadow-md bg-white/10 hover:bg-white/20 my-3 p-2 hover:shadow-lg hover:scale-101 transition duration-300 cursor-pointer">
         <div className="flex justify-between">
             <div className="flex">
                 <UserIcon givenInitialNames={`${user.firstName[0]+user.lastName[0]}`}/>

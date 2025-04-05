@@ -1,5 +1,5 @@
 "use client"
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Heading } from "./ui/Heading";
@@ -32,8 +32,19 @@ export default function SignupForm(){
             }else{
                 console.log(response.data.message);
             }
-        }catch(err){
-            console.error("Signin Failed - ", err);
+        }catch(error){
+            const err = error as AxiosError<{ message?: string }>;
+            if (err.response) {
+                if (err.response.status === 404) {
+                    alert("User not found!");
+                }else{
+                    console.log("Signin failed:", err.response.data);
+                    alert(`Error: ${err.response.data.message || "Something went wrong!"}`);
+                }
+            }else{
+                console.error("Network or server error:", err.message);
+                alert("Network error. Please try again later.");
+            }
         }
     }
     return <>
