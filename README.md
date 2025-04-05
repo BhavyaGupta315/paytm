@@ -7,3 +7,17 @@ There are total 4 pages->
 -  Send (For Sending Money to other users)
 
 MongoDB Database is used for database 
+
+For Setting Up Locally ->
+```
+git clone https://github.com/BhavyaGupta315/paytm.git
+```
+```
+cd paytm
+npm i
+```
+Rename .env.sample to .env
+Fill in .env files with "JWT_SECRET" and "MONGODB_URI"
+```
+npm run dev
+```
