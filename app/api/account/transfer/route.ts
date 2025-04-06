@@ -1,5 +1,6 @@
 import validateToken from "@/lib/validatetoken";
-import { Account } from "@/models/Schemas";
+import { Account, Transaction } from "@/models/Schemas";
+import dbConnect from "@/utils/dbconnect";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -26,6 +27,7 @@ export async function POST(req : NextRequest){
             })
         }
     })
+    dbConnect();
     const session = await mongoose.startSession();
     session.startTransaction();
 
@@ -53,6 +55,14 @@ export async function POST(req : NextRequest){
     await Account.updateOne({userId : userId}, {$inc : {balance : -amount}}).session(session);
     await Account.updateOne({userId : to}, {$inc : {balance : amount}}).session(session);
 
+    const transaction = new Transaction({
+        from : userId,
+        to : to,
+        amount : amount,
+        date : new Date()
+    });
+    
+    await transaction.save({session});
     await session.commitTransaction();
     return NextResponse.json({
         message : "Transaction Successful"

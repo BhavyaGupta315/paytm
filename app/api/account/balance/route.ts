@@ -12,7 +12,6 @@ export async function GET(req : NextRequest){
     }
 
     const token = authHeader.split(" ")[1];
-    console.log(token)
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET);

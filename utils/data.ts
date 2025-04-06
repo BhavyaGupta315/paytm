@@ -22,7 +22,8 @@ export async function getInitials(){
         
         const firstNameInitial = json.user.firstName[0];
         const lastNameInitial = json.user.lastName[0];
-        return firstNameInitial + lastNameInitial;
+        const userId = json.user._id;
+        return {Initials : firstNameInitial + lastNameInitial, userId : userId};
         
     }catch(err){
         console.log("Failed to fetch user Data ", err);
@@ -87,4 +88,44 @@ export async function getUsers(filter : string){
         console.log("Error fetching users:", error);
         return null;
     }
+}
+export async function getTransactionHistory(){
+    try {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            console.log("No token found");
+            return null;
+        }
+        const response = await fetch(`/api/user/transactionHistory`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!response.ok) {
+            console.log("Failed to fetch users");
+            return null;
+        }
+
+        const json = await response.json();
+        console.log(json);
+        return json.transactions; 
+    } catch (error) {
+        console.log("Error fetching users:", error);
+        return null;
+    }
+}
+
+export interface TransactionHistoryCardProps {
+    account : {
+        _id: string;
+        firstName: string;
+        lastName: string;
+    }
+    amount: number;
+    date: string;
+    transactionType: string;
 }

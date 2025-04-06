@@ -1,10 +1,7 @@
-import AuthProvider from "@/components/AuthProvider";
-import Dashboard from "./dashboard/page";
+import Dashboard from "@/components/Dashboard";
 
 export default function Home(){
   return <div>
-      <AuthProvider>
         <Dashboard/>
-      </AuthProvider>
   </div>
 }
