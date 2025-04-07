@@ -72,11 +72,11 @@ export default function SendPageClient({ id, name }: { id: string; name: string 
     
 
     return (
-        <div className="mx-40 mt-1">
+        <div className="sm:mx-40 mx-10 mt-1">
             <Appbar/>
             <div className="flex justify-center h-screen">
                     <div className="h-full flex flex-col justify-center">
-                        <div className="border h-min p-8 w-96 bg-white/10 shadow-md hover:shadow-2xl transition duration-300 rounded-lg">
+                        <div className="border h-min p-8 bg-white/10 shadow-md hover:shadow-2xl transition duration-300 rounded-lg">
                             <div className="flex items-center">
                                 <div className="cursor-pointer flex items-center" onClick={() => router.push("/")}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-left-icon lucide-chevron-left hover:shadow-lg hover:bg-white/10 transition-transform hover:-translate-x-1 duration-200 "><path d="m15 18-6-6 6-6"/></svg>

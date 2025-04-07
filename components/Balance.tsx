@@ -20,7 +20,7 @@ export default function Balance(){
         router.push('/signin')
     }
     return <div className="flex justify-between">
-        <div className="flex"> 
+        <div className="sm:flex"> 
             <div className="font-bold text-lg">
                 Your Balance
             </div>

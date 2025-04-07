@@ -4,7 +4,7 @@ import Balance from "@/components/Balance";
 import Users from "@/components/Users";
 
 export default function Dashboard(){
-    return <div className="mx-40 mt-1">
+    return <div className="sm:mx-40 mx-10 mt-1">
         <AuthProvider>
         <Appbar/>
         <div className="mt-8">

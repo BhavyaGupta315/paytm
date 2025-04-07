@@ -25,15 +25,18 @@ export default function TransactionHistoryCard({account, amount, date, transacti
     
     return (
         <div className="flex flex-row justify-between items-center bg-white/10 p-3 rounded-lg transition duration-300 hover:shadow-lg hover:scale-101 cursor-pointer "> 
-            <div className="flex flex-row items-center">
-                <UserIcon givenInitialNames={`${firstName[0]}${lastName[0]}`} />
-                <div className="flex flex-col">
-                    <span className="text-lg font-semibold">{firstName} {lastName}</span>
-                    <span className="text-sm text-gray-500">{transactionType}</span>
+
+            <div className="sm:flex sm:justify-between w-full h-full">
+                <div className="flex items-center justify-center">
+                    <div>
+                        <UserIcon givenInitialNames={`${firstName[0]}${lastName[0]}`} />
+                    </div>
+                    <div className="flex flex-col">
+                        <span className="text-lg font-semibold">{firstName} {lastName}</span>
+                        <span className="text-sm text-gray-500">{transactionType}</span>
+                    </div>
                 </div>
-            </div>
-            <div className="flex flex-row items-center">
-                <div className="flex flex-col items-center mr-10">
+                <div className="flex flex-col items-center">
                     <div className={`
                         text-lg font-semibold 
                         ${amount > 0 
@@ -43,11 +46,13 @@ export default function TransactionHistoryCard({account, amount, date, transacti
                     `}>
                         {amount > 0 ? '+' : ''}{amount}
                     </div>
-                    <div className="text-sm text-gray-400">
+                    <div className="md:text-sm text-xs text-gray-400 text-center">
                         {formattedDate}
                     </div>
                 </div>
-                <Button label="Send Money" onClick={onClickHandler}/>
+                <div className="flex flex-col items-center h-full mt-2 sm:mx-5">
+                    <Button label="Send Money" onClick={onClickHandler}/>
+                </div>
             </div>
         </div>
     )

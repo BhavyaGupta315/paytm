@@ -39,20 +39,21 @@ interface UserProps {
 function User({ user } : {user : UserProps}){
     const router = useRouter();
     return <div className="rounded-lg shadow-md bg-white/10 hover:bg-white/20 my-3 p-2 hover:shadow-lg hover:scale-101 transition duration-300 cursor-pointer">
-        <div className="flex justify-between">
-            <div className="flex">
+        <div className="flex">
+            <div>
                 <UserIcon givenInitialNames={`${user.firstName[0]+user.lastName[0]}`}/>
-                <div className="flex flex-col justify-center h-full">
+            </div>
+            <div className="sm:flex w-full sm:justify-between">
+                <div className="flex flex-col justify-center items-center">
                     <div>
-                        {user.firstName} {user.lastName}
+                            {user.firstName} {user.lastName}
                     </div>
                 </div>
-            </div>
-
-            <div className="flex justify-center items-center h-full mt-1 mr-5">
-                <Button onClick={() =>{
-                    router.push(`/send?id=${user._id}&name=${user.firstName}`);
-                }} label={"Send Money"}/>
+                <div className="flex flex-col items-center h-full mt-1 mr-5">
+                    <Button onClick={() =>{
+                        router.push(`/send?id=${user._id}&name=${user.firstName}`);
+                    }} label={"Send Money"}/>
+                </div>
             </div>
         </div>
     </div>
