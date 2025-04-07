@@ -2,7 +2,14 @@ import SendPageClient from "./SendPageClient";
 import dbConnect from "@/utils/dbconnect";
 import { User } from "@/models/Schemas";
 
-export default async function SendPage({ searchParams }: { searchParams: { id?: string; name?: string } }) {
+interface SendPageProps {
+    searchParams: {
+      id?: string;
+      name?: string;
+    };
+  }
+
+export default async function SendPage({ searchParams }: SendPageProps) {
     const { id, name } = searchParams;
 
     if (!id || !name) {
