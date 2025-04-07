@@ -1,14 +1,12 @@
 import SendPageClient from "./SendPageClient";
 
-interface SendPageProps {
-    searchParams: {
+type SendPageProps = Promise<{
       id: string;
       name: string;
-    };
-  }
+}>
 
-export default function SendPage({ searchParams }: SendPageProps) {
-    const { id, name } = searchParams;
+export default async function SendPage({ searchParams }: {searchParams : SendPageProps}) {
+    const { id, name } = await searchParams;
 
     return <SendPageClient id={id} name={name} />;
 }
