@@ -20,6 +20,12 @@ export default function TransactionHistory(){
             Loading...
         </div>
     }
+
+    if(transactions.length === 0){
+        return <div>
+            No transactions found.
+        </div>
+    }
     return (
         <div className="mt-8">
             <h2 className="text-lg font-semibold">Transaction History</h2>

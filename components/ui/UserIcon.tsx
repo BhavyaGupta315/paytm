@@ -15,7 +15,6 @@ export default function UserIcon({ givenInitialNames } : UserIconProps) {
     useEffect(() => {
         if (!givenInitialNames) {
             getInitials().then((initial) => {
-                console.log(initial);
                 const name = initial?.Initials;
                 const userId = initial?.userId;
                 setInitialNames(name || "...");

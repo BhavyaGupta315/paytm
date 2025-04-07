@@ -39,7 +39,7 @@ export default function SendPageClient({ id, name }: { id: string; name: string 
 
     const handleOnClick = async () => {
         try {
-            const response = await axios.post("http://localhost:3000/api/account/transfer", {
+            const response = await axios.post("/api/account/transfer", {
                 amount,
                 to: id,
                 userId
@@ -50,7 +50,6 @@ export default function SendPageClient({ id, name }: { id: string; name: string 
             });
     
             if (response.status === 200) {
-                console.log("Transfer successful!");
                 router.push("/");
             }
             

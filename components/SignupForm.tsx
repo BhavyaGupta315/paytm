@@ -23,7 +23,6 @@ export default function SignupForm(){
             ...formData,
             [e.target.name] : e.target.value
         });
-        console.log(formData);
     }
 
     const handleSignup = async () => {
