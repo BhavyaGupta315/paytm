@@ -22,8 +22,7 @@ export default function AuthProvider({ children } : {children : React.ReactNode}
                 }
             });
         }
-        setLoading(false);
-    },[])
+    },[router])
     if(loading){
         return <div>Loading...</div>
     }

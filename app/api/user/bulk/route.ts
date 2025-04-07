@@ -5,6 +5,12 @@ import dbConnect from "@/utils/dbconnect";
 
 const JWT_SECRET = process.env.JWT_SECRET || "";
 
+type UserQuery = {
+    _id?: { $ne: string },
+    $or?: { [key: string]: { $regex: string, $options: string } }[]
+  };
+
+
 export async function GET(req : NextRequest){
     const authHeader = req.headers.get("Authorization");
 
@@ -24,7 +30,7 @@ export async function GET(req : NextRequest){
         const { searchParams } = new URL(req.url);
         const filter = searchParams.get("filter") || "";
 
-        const query : Record<string, any> = {_id : {$ne : userId}};
+        const query : UserQuery = {_id : {$ne : userId}};
         if(filter){
             query.$or = [
                 {firstName : {$regex : filter, $options : "i"}}, // $options = "i" case sensitive ko insensitive karne ke liye

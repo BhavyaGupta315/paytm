@@ -1,8 +1,8 @@
-interface InputBox {
+// Extending this because of Other Props
+interface InputBox extends React.InputHTMLAttributes<HTMLInputElement>{
     label: string;
     placeholder: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    [key: string]: any;
 }
 
 export const InputBox = ({label, placeholder, onChange, ...otherProps} : InputBox)=>{

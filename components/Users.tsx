@@ -50,7 +50,7 @@ function User({ user } : {user : UserProps}){
             </div>
 
             <div className="flex justify-center items-center h-full mt-1 mr-5">
-                <Button onClick={e =>{
+                <Button onClick={() =>{
                     router.push(`/send?id=${user._id}&name=${user.firstName}`);
                 }} label={"Send Money"}/>
             </div>
