@@ -36,6 +36,6 @@ export async function GET(req : NextRequest){
 
         return NextResponse.json({users});
     }catch(error){
-        return NextResponse.json({ message: "Invalid or expired token" }, { status: 403 });
+        return NextResponse.json({ message: "Invalid or expired token", Error : error }, { status: 403 });
     }
 }
