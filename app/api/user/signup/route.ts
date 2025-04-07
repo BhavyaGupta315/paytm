@@ -1,7 +1,7 @@
 import { Account, User } from "@/models/Schemas";
 import dbConnect from "@/utils/dbconnect";
 import { NextRequest } from "next/server";
-import * as jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 const JWT_SECRET = (process.env.JWT_SECRET) ? process.env.JWT_SECRET : "";
 

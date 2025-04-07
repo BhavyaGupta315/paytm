@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import * as jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 const SECRET_KEY = (process.env.JWT_SECRET) ? process.env.JWT_SECRET : "error"; 
 

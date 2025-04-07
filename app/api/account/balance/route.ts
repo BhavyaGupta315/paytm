@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import * as jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import dbConnect from "@/utils/dbconnect";
 import { Account } from "@/models/Schemas";
 
