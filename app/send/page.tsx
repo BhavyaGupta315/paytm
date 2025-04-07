@@ -4,8 +4,8 @@ import { User } from "@/models/Schemas";
 
 interface SendPageProps {
     searchParams: {
-      id?: string;
-      name?: string;
+      id: string;
+      name: string;
     };
   }
 
