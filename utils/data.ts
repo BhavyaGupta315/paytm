@@ -61,6 +61,37 @@ export async function getBalance(){
     }
 }
 
+
+export async function getUser(){
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        console.log("No token found");
+        return null;
+    }
+
+    try {
+        const response = await fetch("/api/account/balance", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!response.ok) {
+            console.log("Failed to fetch balance");
+            return null;
+        }
+
+        const json = await response.json();
+        return json.balance; 
+    } catch (error) {
+        console.log("Error fetching balance:", error);
+        return null;
+    }
+}
+
 export async function getUsers(filter : string){
     try {
         const token = localStorage.getItem("token");
