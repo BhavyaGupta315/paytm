@@ -44,7 +44,7 @@ export default function TransactionHistoryCard({account, amount, date, transacti
                         : 'text-red-500 hover:drop-shadow-[0_0_6px_rgba(239,68,68,0.6)]'} 
                         transition duration-200 ease-in-out
                     `}>
-                        {amount > 0 ? '+' : ''}{amount}
+                        {amount > 0 ? '+' : '-'}₹{Math.abs(amount)}
                     </div>
                     <div className="md:text-sm text-xs text-gray-400 text-center">
                         {formattedDate}
