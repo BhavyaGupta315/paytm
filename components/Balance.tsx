@@ -15,6 +15,11 @@ export default function Balance(){
         })
     },[])
 
+    const handleRedirect = () => {
+        window.location.href = "https://web3-wallet-sol-eth.vercel.app/";
+      };
+    
+
     const loggingOutHandler = async () => {
         localStorage.clear();
         router.push('/signin')
@@ -27,6 +32,9 @@ export default function Balance(){
             <div className="font-semibold ml-4 text-lg">
                 Rs {balance}
             </div>
+        </div>
+        <div>
+            <Button label="Access Crypto Wallet" onClick={()=>handleRedirect()}/>
         </div>
         <div>
             <Button label="Log Out" onClick={loggingOutHandler}/>
